@@ -88,9 +88,9 @@ Environment (10.12.5). Initially, a systematic inventory of the available
 functionality in Apple Mail was conducted.
 
 \subsection{Description of main UI of Apple Mail}
-The main UI of Apple Mail can be seen in figure \ref{fig_apple_mail_scren}.
-It consists of three columns, of which only the `Mail List' and `Mail Details'
-column are shown by default. The `Mail List' shows all mails of the active mailbox.
+The main UI of Apple Mail is shown in figure \ref{fig_apple_mail_scren}.
+It consists of three columns of which only the `Mail List' and `Mail Details'
+column are shown by default. The `Mail List' presents all mails of the active mailbox.
 the list entry can be customised in the `Preferences', accessible through the `File'
 drop down menu. The `Mail List' has by default a sort/filter bar with a drop down
 menu for various list sort methods and an icon button to apply filters. The `Mail
@@ -104,12 +104,20 @@ the `Mail List'. This view scrolls if needed both vertically and horizontally.
 Various options regarding the visualization can be chosen in the `Preferences'
 menu. By default, the header of the mail contains a number of `hyperlink' style
 functionality for toggling visibility of some less often needed information but
-also as shortcut for the common mail actions `delete', `reply', `reply to all' and
-`forward'.
+also as shortcut for the common mail actions `Delete', `Reply', `Reply to all',
+`Forward' and access to attachments.
 
 The `Mailbox List' column can be toggled visible/invisible
 by a button in the `Favorites' bar which otherwise contains text buttons for the
 available mailboxes.
+
+Above the `Favorites' bar there is the `Toolbar' that contains in the default
+setup nine buttons and a search field. The buttons are from left to right:
+`Get new messages', `Compose new mail', `Archieve selected', `Delete selected',
+`Selected to junk', `Reply', `Reply All', `Forward' and `Flag selected'. The
+search field allows for text search in all or in a specific mailbox. Both
+the content and the layout of the `Toolbar' is freely customizable with a number
+of addtional functions/buttons not visible in the default setup.
 
 
 \begin{figure}
@@ -122,6 +130,71 @@ available mailboxes.
 \end{figure}
 
 \subsection{Description of Menu accessible Functionality in Apple Mail}
+The `Menu Bar' contains the dropdown menus `File', `Edit', `View', `Mailbox',
+`Message', `Format', `Windows' and `Help'. Most of the menu items are functionality
+that is also directly accessible in the UI. The menu shows keyboard shortcuts for
+much of the functionality. Menu items not found in the UI are either for
+configuration and customizing the UI, or for setting up and configuring the user
+data such as mailboxes accounts and smart assitant functions.
+
+
+\section{Desktop to Mobile Transformation}
+The prior section described in detail the source application `Apple Mail'. In this
+section, the functionality and layout of the desktop application is structured
+and translated into the mobile context that will provide the conceptual framework
+for designing prototype layouts of the mobile application.
+
+\subsection{Interpretation and Translation of the Functionality}
+The components of the email application model are identified to be:
+\begin{itemize}
+  \item Mailbox Account
+  \item Mailbox Folder
+  \item Mail
+\end{itemize}
+
+From these components, the most important is for obvious reasons the mail. Mailbox
+accounts are initially mostly a matter of application setup. During daily usage,
+together with Mailbox folder, they become merely structures as basis for
+data visualization in the UI. Note that there is no `User' entity in the
+application model. This is because the email client is bound to the global system
+user account on the desktop system. The same concept will be used also for the
+mobile application. Hence all general settings in the application can be seen
+as the `User' settings.
+
+
+The functionality used most often is centered around the single mail:
+\begin{itemize}
+  \item Compose new
+  \item View
+  \item Reply
+  \item Reply All
+  \item Forward
+  \item Delete
+  \item Archieve
+  \item Flag
+  \item Junk
+\end{itemize}
+
+From these actions, the first five are directly related to the main purpose of
+the applications, `send and receive mails'. The last four are secondary
+functionality to enable a more convenient organization and administration of
+the mails.
+
+Functionality that acts uppon a selection of emails is:
+\begin{itemize}
+  \item Sort
+  \item Filter
+  \item Search
+\end{itemize}
+
+
+
+
+
+
+\subsection{Interpretation and Translation of UI}
+
+
 
 \section{Design with Android Elements}
 How to splitup the functionality into activities, layouts, menues, dialogs, fragments and messages.
