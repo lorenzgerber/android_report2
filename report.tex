@@ -144,55 +144,104 @@ section, the functionality and layout of the desktop application is structured
 and translated into the mobile context that will provide the conceptual framework
 for designing prototype layouts of the mobile application.
 
-\subsection{Interpretation and Translation of the Functionality}
-The components of the email application model are identified to be:
-\begin{itemize}
-  \item Mailbox Account
-  \item Mailbox Folder
-  \item Mail
-\end{itemize}
+\subsection{Establishing the Mobile App Functionality Profile}
+The components of the email application model are identified to be `Mailbox Account'
+`Mailbox Folder' and `Mail Message'. From these components, the most important is for
+obvious reasons the mail message.
 
-From these components, the most important is for obvious reasons the mail. Mailbox
-accounts are initially mostly a matter of application setup. During daily usage,
-together with Mailbox folder, they become merely structures as basis for
-data visualization in the UI. Note that there is no `User' entity in the
-application model. This is because the email client is bound to the global system
-user account on the desktop system. The same concept will be used also for the
-mobile application. Hence all general settings in the application can be seen
-as the `User' settings.
+For the mobile app `Mailbox folders' will be dropped. On a desktop, it makes
+sense to download all the messages and keep the inbox tidy by assigning mails to
+individual folders. On a mobile app, having the most important information
+availble as quick as possible seems more important. Hence a different message
+managment mode is envisioned for the mobile mail client: \textit{From each
+mailbox account only the ten most recent messages are downloaded to the device.
+On synchronization with the mail account, the oldest mails over the limit are
+deleted. However, for 10 more mails, the header information are loaded and
+represented in the list. Mails can be deleted or archieved. Delete, will remove
+them from the actual account/server. Archieving them will write a unique id for
+the mail into an archieve list kept on the phone. This will prevent the mails
+from showing up in the mail list, they are however not deleted on the
+account/server.}
 
+Mailbox accounts are mostly a matter of application setup. During daily usage,
+they contribute structures as basis for data visualization in the UI. Note that
+there is no `User' entity in the application model. This is because the email
+client is bound to the global system user account on the desktop system. The
+same concept will be used also for the mobile application. Hence all general
+settings in the application can be seen as the `User' settings.
 
-The functionality used most often is centered around the single mail:
-\begin{itemize}
-  \item Compose new
-  \item View
-  \item Reply
-  \item Reply All
-  \item Forward
-  \item Delete
-  \item Archieve
-  \item Flag
-  \item Junk
-\end{itemize}
+The functionality used most often is centered around single mail messages:
+`Compose new', `View Message', `Reply', `Reply All', `Forward', `Delete',
+`Archieve', `Flag' and `Junk'. From these actions, the first five are directly
+related to the main purpose of the applications, `sending and receiving mail
+messages'. The last four are secondary functionality to enable a more convenient
+organization and administration of the mail messages.
 
-From these actions, the first five are directly related to the main purpose of
-the applications, `send and receive mails'. The last four are secondary
-functionality to enable a more convenient organization and administration of
-the mails.
+Functionality that acts uppon a selection of mail messages is `Sort', `Filter',
+and `Search'.
 
-Functionality that acts uppon a selection of emails is:
-\begin{itemize}
-  \item Sort
-  \item Filter
-  \item Search
-\end{itemize}
+From all the described functionality, it seems that in a mobile context receiving
+new information (i.e. mail messages) and retrieving information (i.e. searching)
+are the most important. Of course, there should be the possibility to also write
+and send mail messages, however this functionality is physically limited on a
+mobile screen keyboard. Short messages without the need for a more traditional
+layout are today mostly the domain of direct messaging apps. Hence, below follows the
+functionality profile for the mobile mail client app:
 
-
-
-
+\begin{enumerate}
+  \item Receive and Present new Mail Messages
+  \item Search for Mail Messages
+  \item Write and Send Mail Messages
+\end{enumerate}
 
 
 \subsection{Interpretation and Translation of UI}
+The translation of the UI from desktop to mobile is driven by several factors such
+as `Screen size', `Functionality Profile', `Touch vs. Mouse' and `Platform Standards'.
+As a first consequence of the screen size limitation, the 2-(3) column design
+of the desktop app was changed into individual screens on the mobile app. The design
+elements are chosen from the google material design guidelines \cite{materialdesign}.
+
+
+
+\subsection{Notifications}
+Showing a status bar icon
+pulsing the device's LED
+peeking onto the current screen
+adding to the notification drawer
+
+\subsubsection{Mail Message Viewer}
+
+
+
+
+\subsubsection{Scrollable Mail Message List}
+List, according to material desgin guidelines up to three lines of text.
+Swipe "Leave-behinds" for Delete/archieve
+floating action button for search (main activity)
+
+reloading by swipe scrolling down at the top of the list.
+
+Navigation Drawer
+
+Thumb does most of the work 49\% single handed with thumb plus 26\% double
+handed still with thumb (chapter 1, 'How we hold our gadgets').
+
+Independent of left or right hand, center and down to the middle of the screen (chapter 1, 'The Phone's thumb zone')
+
+According to 'Desigining for Touch' (chapter 1, fig. 1.24), no navigation bar at the bottom, only
+a floating action button.
+
+Touch target 7mm minimum 'Designin for Touch' (chapter2, Good enough Size: 7mm).
+7-11mm depending on location. Thumb fan. 44 dp in Android corresponds to 7mm,
+69 pixels is 11mm.
+
+make the interface fast (chapter 3, 'Enable primary tasks directly form list view').
+
+Reducing the number of buttons to where direct interaction is not possible (chapter 4, 'Buttons are a Hack')
+
+\subsubsection{Mail Message Editor}
+Text Area
 
 
 
