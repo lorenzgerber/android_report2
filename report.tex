@@ -109,7 +109,9 @@ also as shortcut for the common mail actions `Delete', `Reply', `Reply to all',
 
 The `Mailbox List' column can be toggled visible/invisible
 by a button in the `Favorites' bar which otherwise contains text buttons for the
-available mailboxes.
+available mailboxes. The `Mailbox List' in combination with the `Mail List' offers
+extensive `drag & drop' functionality to put mail messages from one folder to
+another.
 
 Above the `Favorites' bar there is the `Toolbar' that contains in the default
 setup nine buttons and a search field. The buttons are from left to right:
@@ -119,6 +121,8 @@ search field allows for text search in all or in a specific mailbox. Both
 the content and the layout of the `Toolbar' is freely customizable with a number
 of addtional functions/buttons not visible in the default setup.
 
+Both the `Mail Message' and the `Folder' object on the screen provide context
+sensitive menu on 'right-click'.
 
 \begin{figure}
   \label{fig:apple_main_screen}
@@ -138,32 +142,57 @@ configuration and customizing the UI, or for setting up and configuring the user
 data such as mailboxes accounts and smart assitant functions.
 
 
-\section{Desktop to Mobile Transformation}
-The prior section described in detail the source application `Apple Mail'. In this
-section, the functionality and layout of the desktop application is structured
-and translated into the mobile context that will provide the conceptual framework
-for designing prototype layouts of the mobile application.
+\subsection{Application Profile}
+The core functionality of a mail application is receiving, writing and sending
+mail messages. Mail Message, Mail account and Mailbox administration is secondary
+funcationality. A desktop application like `Apple Mail' offers `the full package'
+of primary and secondary functionality. More over, often desktop mail clients
+offer a significant functionality to tailor the application envelope according to
+the users preferences. Here it is assumed that the application profile of mobile
+mail client users is by default more clearly specified. Hence, a mobile applicatin
+does not need to offer the same flexibilty for customization and the profile of
+available functions will be more narrow.
 
-\subsection{Establishing the Mobile App Functionality Profile}
-The components of the email application model are identified to be `Mailbox Account'
-`Mailbox Folder' and `Mail Message'. From these components, the most important is for
-obvious reasons the mail message.
+The most important functionality for a mobile mail client user is to have easy
+access to the newest information. This includes receiving messages, getting informed
+about new messages, quick acess to new messages but also convenient access methods
+for old messages. Writing new mail messages is of lower importance. For quick
+informal messages most people use nowadays spcial message/chat application that
+offer a more direct interaction. Further, it is not very convenient to type and
+layout longer mail messages with the on-screen keyboard on a rather small screen
+of a mobile device.
 
-For the mobile app `Mailbox folders' will be dropped. On a desktop, it makes
-sense to download all the messages and keep the inbox tidy by assigning mails to
-individual folders. On a mobile app, having the most important information
-availble as quick as possible seems more important. Hence a different message
-managment mode is envisioned for the mobile mail client: \textit{From each
-mailbox account only the ten most recent messages are downloaded to the device.
-On synchronization with the mail account, the oldest mails over the limit are
-deleted. However, for 10 more mails, the header information are loaded and
-represented in the list. Mails can be deleted or archieved. Delete, will remove
-them from the actual account/server. Archieving them will write a unique id for
-the mail into an archieve list kept on the phone. This will prevent the mails
-from showing up in the mail list, they are however not deleted on the
-account/server.}
+It is also not primary functionality in a mobile mail message client to organize
+the Accounts, Mailboxes and Messages.
 
-Mailbox accounts are mostly a matter of application setup. During daily usage,
+\subsection{Desktop to Mobile Transformation}
+While a desktop application has very little space constraints and can
+compartmentalize the main screen in different sub container, the mobile app will
+mostly use one screen for one purpose. In Android Framework terms, this is
+one `Activity' for one purpose. The desktop app has two main containers, the
+`Mail List' and the `Mail Details'. In the Android app there will be one
+activity for the `Mail List' and on for `Mail Detail View' and one
+more for writing/editing mail messags.
+
+The `Mailbox List' foldable column in the desktop application is translated into
+a `navigation drawer' that slides in from the left side \cite{navigation_drawer}.
+
+The rich set of customizable buttons in the toolbar is not translated into the
+mobile application. The main aim of the mobile applicatin is to offer the most
+important primary functionality as direct interaction with the respective objects.
+
+
+
+The components of the email application model are `Mailbox Account'
+`Mailbox Folder' and `Mail Message'. The desktop client offers a rich set of
+functionality to create, navigate and maintain folder structures to which mail
+messages can be assigned by drag & drop action.
+
+Administrating the mailbox accounts is however not a high priority for the
+mobile mail client. Hence, this functionality is not implemented as direct
+interface interaction (drag & drop) but rather through menus.
+
+`Mailbox accounts' are mostly a matter of application setup. During daily usage,
 they contribute structures as basis for data visualization in the UI. Note that
 there is no `User' entity in the application model. This is because the email
 client is bound to the global system user account on the desktop system. The
@@ -171,7 +200,18 @@ same concept will be used also for the mobile application. Hence all general
 settings in the application can be seen as the `User' settings.
 
 The functionality used most often is centered around single mail messages:
-`Compose new', `View Message', `Reply', `Reply All', `Forward', `Delete',
+`Compose new', `View Message', `Reply', `Reply All', `Forward'. Here, as another
+significant modification in functionality, the mobile app will offer
+only functionality to `Archieve' but not `Delete' messages. This measure  solves
+a dangerous design inconsistency that some popular mobile mail clients  suffer
+from: When multiple mail accounts of different types (IMAP, POP3) are
+aggregated, depending on the account type, the same user action,  often swiping
+a mail list entry off screen, can result either in deleting or archieving of the
+message. As this report is mostly considered with desgin, the  implementation of
+archieving for mail account types that by default don't offer this operation will
+not be discussed here.
+
+
 `Archieve', `Flag' and `Junk'. From these actions, the first five are directly
 related to the main purpose of the applications, `sending and receiving mail
 messages'. The last four are secondary functionality to enable a more convenient
