@@ -9,6 +9,7 @@
 \usepackage{listings}
 \usepackage{pgf-umlcd}
 \usepackage{blindtext}
+\usepackage{rotating}
 \usepackage{enumitem}
 %\usepackage{lmodern}   % Optional fonts. (not necessary)
 %\usepackage{tabularx}
@@ -67,7 +68,7 @@
 \section{Introduction}
 The aim of this assignment is to translate a desktop mail client application to
 a mobile app. This includes both functional and design related aspects. The
-functionality shalls be described in terms of android elements and concepts such
+functionality shall be described in terms of Android elements and concepts such
 as activities, layouts, menues, dialogs, fragments and messages. A main aspect is
 to decide and reason which functionality should be stripped from the desktop version
 and eventual additional functionality needed in the mobile app.
@@ -82,7 +83,7 @@ design when the proposed Android application would be ported to another mobile
 platform of choice.
 
 \section{The Desktop Mail Client - Apple Mail}
-Here the 'Apple Mail' client was chosen as the application to be ported into
+Here the 'Apple Mail' client was chosen as desktop application to be ported to
 an Android mobile app. The version at hand was 10.3 (3273) in a macOS Sierra
 Environment (10.12.5). Initially, a systematic inventory of the available
 functionality in Apple Mail was conducted.
@@ -110,7 +111,7 @@ also as shortcut for the common mail actions `Delete', `Reply', `Reply to all',
 The `Mailbox List' column can be toggled visible/invisible
 by a button in the `Favorites' bar which otherwise contains text buttons for the
 available mailboxes. The `Mailbox List' in combination with the `Mail List' offers
-extensive `drag & drop' functionality to put mail messages from one folder to
+extensive `drag \& drop' functionality to put mail messages from one folder to
 another.
 
 Above the `Favorites' bar there is the `Toolbar' that contains in the default
@@ -145,52 +146,60 @@ data such as mailboxes accounts and smart assitant functions.
 \subsection{Establishing the Mobile Application Profile}
 The core functionality of a mail application is receiving, writing and sending
 mail messages. Mail Message, Mail account and Mailbox administration is
-secondary funcationality. A desktop application like `Apple Mail' offers `the
-full package' of primary and secondary functionality. More over, often desktop
-mail clients offer a significant functionality to tailor the application
-envelope according to the users preferences. Here it is assumed that the
-application profile of mobile mail client users is by default more limited. A
-mobile application does not need to offer the same flexibilty for customization
-and the profile of available functions will be more narrow.
+secondary functionality. A desktop application like `Apple Mail' offers `the
+full package' of primary and secondary functionality. More over, a wealth of
+settings to tailor parts of the layout and application envelope according to the
+users preferences. Here it is assumed that the application profile of mobile
+mail client users is by default more limited. A mobile application does not need
+to offer the same flexibilty for customization and the profile of available
+functions will be more narrow.
 
 The most important functionality for a mobile mail client user is to have easy
 access to the newest information. This includes receiving messages, getting
 informed about new messages, quick acess to new messages but also convenient
 access methods for old messages. Writing new mail messages is of lower
-importance. For quick informal messages most people use nowadays spcial
-message/chat application that offer a more direct interaction. Further, it is
-not very convenient to type and layout longer mail messages with the on-screen
-keyboard on a rather small screen of a mobile device.
+importance. For quick informal messages most people use nowadays special
+message/chat application that offer a more direct type of communication and
+interaction with people. Further, it is not very convenient to type and layout
+longer mail messages with the on-screen keyboard on mobile device compared to a
+real physical keyboard.
 
-It is also not primary functionality in a mobile mail message client to organize
-the Accounts, Mailboxes and Messages.
+It is also not considered primary functionality in a mobile mail message client
+to organize the Accounts, Mailboxes and Messages.
 
-\subsection{Desktop to Mobile Transformation}
-While a desktop application has very little space constraints and can
-compartmentalize the main screen in different sub container, the mobile app will
-mostly use one screen for one purpose. In Android Framework terms, this is
-one `Activity' for one purpose. The desktop app has two main containers, the
-`Mail List' and the `Mail Details'. In the Android app there will be one
-activity for the `Mail List' and on for `Mail Detail View' and one
-more for writing/editing mail messags.
+\subsection{Desktop to Mobile Transformation} While a desktop application has
+very little space constraints and can compartmentalize the main screen in
+different sub containers, the mobile app will mostly use one screen for one
+purpose. In Android Framework terms, this means one `Activity' for one purpose.
+For reasons of modularization and reuseability, there is however often used a
+second layer of abstraction, the Fragment. As this is irrelevant for design
+purposes, `Activity' will be used in the whole text. The desktop app has two
+main containers, the `Mail List' and the `Mail Details'.  In the Android app
+there will three main activities: `Mail List',  `Mail Detail View' and `Mail
+Detail Edit' \cite{fig:hand_design}. The `Mailbox List' foldable column in the
+desktop application is translated into a `navigation drawer' that slides in from
+the left side \cite{navigation_drawer}.
 
-The `Mailbox List' foldable column in the desktop application is translated into
-a `navigation drawer' that slides in from the left side \cite{navigation_drawer}.
+\begin{sidewaysfigure}[ht!]
+    \includegraphics[width=1\textwidth]{hand_design.png}
+    \caption{Design draft on the Android Mail Client.}
+    \label{fig:hand_design}
+\end{sidewaysfigure}
 
-The rich set of customizable buttons in the toolbar is not translated into the
+
+The rich set of customizable buttons in the toolbar is not translated to the
 mobile application. The main aim of the mobile applicatin is to offer the most
 important primary functionality as direct interaction with the respective objects.
-
 
 
 The components of the email application model are `Mailbox Account'
 `Mailbox Folder' and `Mail Message'. The desktop client offers a rich set of
 functionality to create, navigate and maintain folder structures to which mail
-messages can be assigned by drag & drop action.
+messages can be assigned by drag \& drop action.
 
 Administrating the mailbox accounts is however not a high priority for the
 mobile mail client. Hence, this functionality is not implemented as direct
-interface interaction (drag & drop) but rather through menus.
+interface interaction (drag \& drop) but rather through menus.
 
 `Mailbox accounts' are mostly a matter of application setup. During daily usage,
 they contribute structures as basis for data visualization in the UI. Note that
@@ -198,6 +207,15 @@ there is no `User' entity in the application model. This is because the email
 client is bound to the global system user account on the desktop system. The
 same concept will be used also for the mobile application. Hence all general
 settings in the application can be seen as the `User' settings.
+
+\begin{figure}
+  \label{fig:mail_message_list}
+  \centering
+    \includegraphics[width=0.5\textwidth]{mail_message_list}
+    \caption{\textit{The main view of Apple Mail has three columns: `Mailbox List',
+    `Mail List' and `Mail Details'. The `Mailbox List' column is however
+    hidden in the standard configuration.}}
+\end{figure}
 
 The functionality used most often is centered around single mail messages:
 `Compose new', `View Message', `Reply', `Reply All', `Forward'. Here, as another
@@ -216,6 +234,15 @@ not be discussed here.
 related to the main purpose of the applications, `sending and receiving mail
 messages'. The last four are secondary functionality to enable a more convenient
 organization and administration of the mail messages.
+
+\begin{figure}
+  \label{fig:nav_drawer}
+  \centering
+    \includegraphics[width=0.5\textwidth]{nav_drawer}
+    \caption{\textit{The main view of Apple Mail has three columns: `Mailbox List',
+    `Mail List' and `Mail Details'. The `Mailbox List' column is however
+    hidden in the standard configuration.}}
+\end{figure}
 
 Functionality that acts uppon a selection of mail messages is `Sort', `Filter',
 and `Search'.
