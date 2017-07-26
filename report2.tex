@@ -228,22 +228,92 @@ While studying the Android Material Design guidelines, it was striking how well
 they align with the topics in the course litterature \cite{clark2015}. Material
 Design Components offer many ways of direct interaction that allow building
 a fast and intuitive UI as described in Clark 2015
-(\cite[chapter 3, 'Enable primary tasks directly from list view']{clark2015}). 
+(\cite[chapter 3, 'Enable primary tasks directly from list view']{clark2015}).
 
 
 \subsection{Detailed Layout and Design Description}
-\subsubsection{Scrollable Mail Message List}
+To devise more detailed design descriptions of each part in the mobile app,
+setting up mock-ups in Android Studio was chosen. To obtain mockups that
+include certain dynamic functionality, some mockup classes and data had to be
+included. A repository with the respective android studio project can be found
+here: \url{https://github.com/lorenzgerber/designmailclient.git}.
 
-\begin{figure}
-  \label{fig:mail_message_list}
+\subsubsection{Scrollable Mail Message List}
+A mockup created in Android Studio of the scrollable `Mail Message List' can be
+seen in figure \ref{fig:mail_message_list}. Technically, the implementation
+usese a `RecyclerView' within a `CoordinatorLayout'. The former allows for
+resuse and efficient caching of the the list items. The latter is used to allow
+interactions between child elements. There will be a number of such interactions
+described further down.
+
+\begin{figure}[hp!]
+
   \centering
     \includegraphics[width=0.5\textwidth]{mail_message_list}
     \caption{\textit{The main view of Apple Mail has three columns: `Mailbox List',
     `Mail List' and `Mail Details'. The `Mailbox List' column is however
     hidden in the standard configuration.}}
+    \label{fig:mail_message_list}
 \end{figure}
 
+The list item shall according to Material Design guidelines have no more
+than  three lines \cite{material_lists}. Here, the first line is used for the
+Mail Message senders name and the timestamp when the message was recevied. The
+second line shows the subject and the third the first text line of the message.
+
+The primary direct interaction of this view is to scroll up and down in the
+`Mail Message List' and choose a message for the `Mail Detail View' by tapping
+on the list item.
+
+The toolbar uses the Material Design component `AppBarLayout'
+\cite{appbar_layout}.  It provides functionality for advanced scrolling
+techniuqes of the underlying content. One such used it the `Swipe to Refresh' at
+the top of the recycler list. When distinctly pull down the list for a moment,
+reloading the mailboxes for new messages will be activted.
+
+The implementation of this primary action (reload mailboxes) is a good example
+of an intuitive UI: The user expects the newest mails to be on top of the list.
+It is understood that the list can be scrolled. When the user wants to check if
+the current visible message is the newest, he will automatically pull the list
+down and by this activate a mailbox reload. An eventual freshly downloaded
+message popping up at the top will easily be recognized as `just arrived'.
+
+Another direct interaction that implements primary funcitonality is the
+horizontal swiping of list elements that will lead to archiving the respective
+Mail Message. Here it was decided that left and right swipe will trigger the
+same function. According to Clark (\cite[chapter1, `Hold the
+phone']{clark2015}), most people hold the device initially in the right hand,
+but then switch frequently. According to Clark, in one hand operation, using the
+thumb is predominant. It was considered  that for one hand operation with the
+thumb, the natural understanding of interaction would be to swipe a list element
+away from the user. But as the user frequently changes the hand that holds the
+device, applying the same function for left and  right swipe seems most
+consistent and safe.
+
+It was also decided to only trigger archieving of Mail Messages, no delete
+action  which is in contrast to several popular mail apps. Often the choice
+between archieve  or delete depends on the type of the underlying mail account:
+Not all mail accounts provide archieve functionality. The app under development
+will address this issue with a software based solution that is however not
+subject of this report.
+
+Clark makes a point that the Android setup with three system buttons on the
+bottom is less than optimal: Folllowing design rules, it prevents from placing
+app specific functionality to the button of the screen. Googles material design
+indeed has few components that violate this rule. Further, several components are
+provided that help to circumvent this limitation. One of them is the Floating action
+button (FAB) which allows to place some primary functionality in a easily reachable
+area. Here the FAB was implemented for mail message searching.
+
 \subsubsection{Navigation Drawer}
+The navigation drawer is an element within the `Mail Message List' Activity. A
+Material Design Component is available to help implement typical behaviour of
+the Navigation drawer, which includes the menu item at the left edge of the appbar
+that will slide in the drawer from the left. The more direct way of
+sliding in the drawer is to swipe inwards from the left edge of the screen: This
+feels arguably like a intuitive physical interaction.
+
+
 \begin{figure}
   \label{fig:nav_drawer}
   \centering
@@ -253,6 +323,7 @@ a fast and intuitive UI as described in Clark 2015
     hidden in the standard configuration.}}
 \end{figure}
 \subsubsection{Mail Message Viewer}
+
 \subsubsection{Mail Message Editor}
 
 
