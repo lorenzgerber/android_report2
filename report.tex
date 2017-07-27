@@ -89,7 +89,7 @@ Environment (10.12.5). Initially, a systematic inventory of the available
 functionality in Apple Mail was conducted.
 
 \subsection{Description of main UI of Apple Mail}
-The main UI of Apple Mail is shown in figure \ref{fig_apple_mail_scren}.
+The main UI of Apple Mail is shown in figure \ref{fig:apple_main_screen}.
 It consists of three columns of which only the `Mail List' and `Mail Details'
 column are shown by default. The `Mail List' presents all mails of the active mailbox.
 the list entry can be customised in the `Preferences', accessible through the `File'
@@ -126,12 +126,12 @@ Both the `Mail Message' and the `Folder' object on the screen provide context
 sensitive menu on 'right-click'.
 
 \begin{figure}
-  \label{fig:apple_main_screen}
   \centering
     \includegraphics[width=1\textwidth]{main_screen}
     \caption{\textit{The main view of Apple Mail has three columns: `Mailbox List',
     `Mail List' and `Mail Details'. The `Mailbox List' column is however
     hidden in the standard configuration.}}
+    \label{fig:apple_main_screen}
 \end{figure}
 
 \subsection{Description of Menu accessible Functionality in Apple Mail}
@@ -142,14 +142,27 @@ much of the functionality. Menu items not found in the UI are either for
 configuration and customizing the UI, or for setting up and configuring the user
 data such as mailboxes accounts and smart assitant functions.
 
+\subsection{Notifications}
+Being a an application developed by `Apple' itself, `Apple Mail' is fully integrated
+with the OSX notification center and offers as such a wide range of configuration to
+adapt notification behaviour to the users preferences \cite{apple_notifications}. The
+main elements of the notification system is a small badge that shows up in the upper
+right screen corner and floats for several seconds over all other content on the
+screen until it dissapears again. Apple Mail uses this notification badge when a
+new a new mail message is received. All notification messages are collected and
+archieved in the notification center which slides in as a drawer on the right side
+of the screen when pressing the notifications icon in the main menu bar. Further,
+the number of unread mails is shown in the application icon on the macOS `Dock'.
 
-\subsection{Establishing the Mobile Application Profile}
+\section{Establishing the Mobile Application Profile}
 The core functionality of a mail application is receiving, writing and sending
 mail messages. Mail Message, Mail account and Mailbox administration is
-secondary functionality. A desktop application like `Apple Mail' offers `the
-full package' of primary and secondary functionality. More over, a wealth of
+secondary functionality. A desktop application like `Apple Mail' offers the
+full package of primary and secondary functionality. More over, a wealth of
 settings to tailor parts of the layout and application envelope according to the
-user preferences. Here it is assumed that the application profile of mobile
+user preferences.
+
+Here it is assumed that the application profile of mobile
 mail client users is by default more limited. A mobile application does not need
 to offer the same flexibilty for customization and the profile of available
 functions will be more narrow.
@@ -162,83 +175,155 @@ importance. For quick informal messages most people use nowadays special
 message/chat application that offer a more direct type of communication and
 interaction with people. Further, it is not very convenient to type and layout
 longer mail messages with the on-screen keyboard on mobile device compared to a
-real physical keyboard.
+real physical keyboard. All sort of administration functionality besides setting
+up multiple mail accounts is considered of lowest priority in the mobile mail
+client.
 
-It is also not considered primary functionality in a mobile mail message client
-to organize the Accounts, Mailboxes and Messages.
+Hence the following prioritized list of functionality resulted for the mobile
+application.
+\begin{enumerate}
+  \item Receive and Present new Mail Messages
+  \item Search for Mail Messages
+  \item Write and Send Mail Messages
+  \item Account Administration and Organization
+\end{enumerate}
 
-\subsection{Transforming the larger Layout Structure}
-While a desktop application has
-very little space constraints and can compartmentalize the main screen in
-different sub containers, the mobile app will mostly use one screen for one
-purpose. In Android Framework terms, this means one `Activity' for one purpose.
-For reasons of modularization and reuseability, there is however often used a
-second layer of abstraction, the Fragment. As this is irrelevant for design
-purposes, `Activity' will be used in the whole text. The desktop app has two
-main containers, `Mail List' and `Mail Details'.  In the Android app
-there are three main activities: `Mail List',  `Mail Details View' and `Mail
-Details Edit' (middle and right drawing in figure \ref{fig:hand_design}).
-The desktop `Mailbox List' foldable column
-is translated into a material design `navigation drawer' that slides in from
-the left side (left drawing figure \ref{fig:hand_design}) \cite{navigation_drawer}.
 
-\begin{sidewaysfigure}[ht!]
+
+\section{Transforming the Desktop Applicatin to an Android App}
+\subsection{The Application Structure}
+While a desktop application has very little space constraints and can
+compartmentalize the main screen in different sub containers, the mobile app
+uses mostly one screen for one purpose. In Android Framework terms: One `Activity'
+for one purpose. For reasons of modularization and
+reuseability, there is often used a second layer of abstraction, the
+Fragment.  The desktop app has two main containers, `Mail List' and `Mail
+Details'.
+
+\begin{sidewaysfigure}[hp!]
     \includegraphics[width=1\textwidth]{hand_design.png}
     \caption{Design draft on the Android Mail Client.}
     \label{fig:hand_design}
 \end{sidewaysfigure}
 
+The Android app is will split the containers into separate screens or
+in Android Framework terms, `Activities'. As a second layer of abstraction,
+there will also be used `Fragments'. The overall layout is showcased in
+figure \ref{fig:hand_design}:   The `Mail List', represented by the middle
+outline, there will be one fragment in the corresponding activity. For `Mail Details',
+the right-most outline in figure \ref{fig:hand_design}, there will be a `Show Mail' and
+a `Edit Mail' fragment in the same `Mail Details' activity. The desktop
+`Mailbox List' which is a foldable column in the desktop application is translated
+into a material design `navigation drawer' (see \cite{navigation_drawer}) that
+slides in from the left side, (left-most outline in figure \ref{fig:hand_design}).
 
-The rich set of customizable buttons in the toolbar is not translated to the
-mobile application. The main aim of the mobile applicatin is to offer the most
-important primary functionality as direct interaction with the respective objects.
+For notifications, the usual Android infrastructure is used: On arrival, new messages
+peek for a short period into the active screen. This notification will allow
+support opening up the `Mail Detail' view.  Then unread messages are indicated
+by an icon in the status bar. The notifciation is also added to the Android
+`Notification Drawer' \cite{android_notifications}.
+
+\subsection{Application Design Elements and User Experience}
+While studying the Android Material Design guidelines, it was striking how well
+they align with the topics in the course litterature \cite{clark2015}. Material
+Design Components offer many ways of direct interaction that allow building
+a fast and intuitive UI as described in Clark 2015
+(\cite[chapter 3, 'Enable primary tasks directly from list view']{clark2015}).
 
 
-The components of the email application model are `Mailbox Account'
-`Mailbox Folder' and `Mail Message'. The desktop client offers a rich set of
-functionality to create, navigate and maintain folder structures to which mail
-messages can be assigned by drag \& drop action.
+\subsection{Detailed Layout and Design Description}
+To devise more detailed design descriptions of each part in the mobile app,
+setting up mock-ups in Android Studio was chosen. To obtain mockups that
+include certain dynamic functionality, some mockup classes and data had to be
+included. A repository with the respective android studio project can be found
+here: \url{https://github.com/lorenzgerber/designmailclient.git}.
 
-As mentioned earlier, administrating the mailbox accounts is not high priority
-functionality for the mobile mail client. Hence, this functionality is not
-implemented as direct interface interaction (drag \& drop) but rather through
-menus.
+\subsubsection{Scrollable Mail Message List}
+A mockup created in Android Studio of the scrollable `Mail Message List' can be
+seen in figure \ref{fig:mail_message_list}. Technically, the implementation
+usese a `RecyclerView' within a `CoordinatorLayout'. The former allows for
+resuse and efficient caching of the the list items. The latter is used to allow
+interactions between child elements. There will be a number of such interactions
+described further down.
 
-`Mailbox accounts' are mostly a matter of application setup. During daily usage,
-they contribute structures as basis for data visualization in the UI. Note that
-there is no `User' entity in the application model. This is because the email
-client is bound to the global system user account on the desktop system. The
-same concept will be used also for the mobile application. Hence all general
-settings in the application are essentially `User' settings.
+\begin{figure}[hp!]
 
-\begin{figure}
-  \label{fig:mail_message_list}
   \centering
     \includegraphics[width=0.5\textwidth]{mail_message_list}
     \caption{\textit{The main view of Apple Mail has three columns: `Mailbox List',
     `Mail List' and `Mail Details'. The `Mailbox List' column is however
     hidden in the standard configuration.}}
+    \label{fig:mail_message_list}
 \end{figure}
 
-The functionality used most often is centered around single mail messages:
-`Compose new', `View Message', `Reply', `Reply All', `Forward'. Here, as another
-significant modification in functionality, the mobile app will offer
-only functionality to `Archieve' but not `Delete' messages. This measure solves
-a dangerous design inconsistency that some popular mobile mail clients suffer
-from: When multiple mail accounts of different types (IMAP, POP3) are
-aggregated, depending on the account type, the same user action,  often swiping
-a mail list entry off screen, can result either in deleting or archieving of the
-message. As this report is mostly considered with desgin, the  implementation of
-archieving for mail account types that by default don't offer this operation will
-not be discussed here.
+The list item shall according to Material Design guidelines have no more
+than  three lines \cite{material_lists}. Here, the first line is used for the
+Mail Message senders name and the timestamp when the message was recevied. The
+second line shows the subject and the third the first text line of the message.
 
+The primary direct interaction of this view is to scroll up and down in the
+`Mail Message List' and choose a message for the `Mail Detail View' by tapping
+on the list item.
 
-`Archieve', `Flag' and `Junk'. From these actions, the first five are directly
-related to the main purpose of the applications, `sending and receiving mail
-messages'. The last four are secondary functionality to enable a more convenient
-organization and administration of the mail messages.
+The toolbar uses the Material Design component `AppBarLayout'
+\cite{appbar_layout}. It hosts the menu icon on the left to swipe in the
+`Navigation Drawer', a title showing the current active mail account and an
+`ImageButton' icon to compose a new mail message.
 
-\begin{figure}
+The `AppBarLayour' provides functionality for advanced scrolling
+techniuqes of the underlying content, for exampel `Swipe to Refresh' at
+the top of the recycler list \ref{fig:mail_message_list}.
+When pull down the list that is already in top end
+position, the active mail account will be queried for new messages. The
+implementation of this primary action (reload mailboxes) is a good example
+of an intuitive UI: The user expects the newest mails to be on top of the list.
+It is understood that the list can be scrolled. When the user wants to check if
+the current visible message is the newest, he will automatically pull the list
+down and by this activate a mailbox reload. An eventual freshly downloaded
+message popping up at the top will easily be recognized as new.
+
+Another direct interaction that implements primary funcitonality is the
+horizontal swiping of list elements \cite['Leave-behinds']{material_list_controls}.
+In `Apple Mail', swiping to the right will
+mark the message as `unread' while swiping to the left will delete it. This seems
+a rather dangerous combination for a mobile user interace. Therefore it was
+decided that left and right swipe will trigger the
+same function. According to Clark (\cite[chapter1, `Hold the
+phone']{clark2015}), most people hold the device initially in the right hand,
+but then switch frequently. According to Clark, in one hand operation, using the
+thumb is predominant. It was considered  that for one hand operation with the
+thumb, the natural understanding of interaction would be to swipe a list element
+away from the user. But as the user frequently changes the hand that holds the
+device, applying the same function for left and right swipe seems most
+consistent and safe.
+
+It was also decided to only trigger archieving of Mail Messages, no delete
+action  which is in contrast to several popular mail apps. Often the choice
+between archieve  or delete depends on the type of the underlying mail account:
+Not all mail accounts provide archieve functionality. The app under development
+will address this issue with a software based solution. This is however not
+in the scope of this report.
+
+Clark makes a point that the Android setup with three system buttons on the
+screen bottom is less than optimal: Folllowing design rules, it prevents from
+placing app specific functionality to there  (
+\cite[Chapter 1, 'Make Way for the Operating System']{clark2015}).
+And indeed Google material design only  has a
+few components that could violate this rule. As fix, several components are
+provided that help to circumvent this Android system design limitation. One of
+them is the Floating action button (FAB) which allows to place some primary
+functionality in a easily reachable area. Here the FAB was implemented for mail
+message searching.
+
+\subsubsection{Navigation Drawer}
+The navigation drawer is an element within the `Mail Message List' Activity. A
+Material Design Component is available to help implement typical behaviour of
+the Navigation drawer, which includes the menu item at the left edge of the appbar
+that will slide in the drawer from the left. The more direct way of
+sliding in the drawer is to swipe inwards from the left edge of the screen: This
+feels arguably like a intuitive physical interaction.
+
+\begin{figure}[hp!]
   \label{fig:nav_drawer}
   \centering
     \includegraphics[width=0.5\textwidth]{nav_drawer}
@@ -247,87 +332,51 @@ organization and administration of the mail messages.
     hidden in the standard configuration.}}
 \end{figure}
 
-Functionality that acts uppon a selection of mail messages is `Sort', `Filter',
-and `Search'.
+The Navigation drawer offers secondary functionality which relates mostly to
+mailbox administration and organisation, correspondigly to the `Mailbox List'
+slider column in `Apple Mail'  By default, the inboxes of
+all configured mail accounts is merged into the `Mail Message List' view. In the
+the navigation drawer, single accounts can be chosen by tapping on them. This
+short tap will close the navigation drawer and with a short delay visibly switch
+the content of the `Mail Message List' to make the user aware of the selection
+he made. A long press on the mail account will open a configuration dialog.
 
-From all the described functionality, it seems that in a mobile context receiving
-new information (i.e. mail messages) and retrieving information (i.e. searching)
-are the most important. Of course, there should be the possibility to also write
-and send mail messages, however this functionality is physically limited on a
-mobile screen keyboard. Short messages without the need for a more traditional
-layout are today mostly the domain of direct messaging apps. Hence, below follows the
-functionality profile for the mobile mail client app:
-
-\begin{enumerate}
-  \item Receive and Present new Mail Messages
-  \item Search for Mail Messages
-  \item Write and Send Mail Messages
-\end{enumerate}
-
-
-\subsection{Interpretation and Translation of UI}
-The translation of the UI from desktop to mobile is driven by several factors such
-as `Screen size', `Functionality Profile', `Touch vs. Mouse' and `Platform Standards'.
-As a first consequence of the screen size limitation, the 2-(3) column design
-of the desktop app was changed into individual screens on the mobile app. The design
-elements are chosen from the google material design guidelines \cite{materialdesign}.
-
-
-
-\subsection{Notifications}
-Showing a status bar icon
-pulsing the device's LED
-peeking onto the current screen
-adding to the notification drawer
+Below the mail accounts, there is a further menu item to access general app
+settings.
 
 \subsubsection{Mail Message Viewer}
+The `Mail Message View' is opened by tapping on a individual `Mail Message' in
+the `Mail Message List' view. As outlined in figure
+\ref{fig:hand_design}(rightmost drawing), this view will be composed by an
+`ExpandableListView' to structure the history of an mail conversation. The most
+recent mail message will be in expanded form, showing the actual message. All
+prior messages in a ongoing conversation will be collapsed. The toolbar here
+contains a navigation icon on the left edge to go back to the `Mail Message
+List'. On the right side of the toolbar is one `ImageButton' for replying the
+message and one with the `vertical overflow menu' icon which will open a menu
+for secondary functionality.
 
+The reply button will by default start the `Mail Message Editor' Fragment in
+`reply-to-sender' mode. A long press on the reply button will open a menu that
+provides the `Reply-All' and `Forward' functionality.
 
-
-
-\subsubsection{Scrollable Mail Message List}
-List, according to material desgin guidelines up to three lines of text.
-Swipe "Leave-behinds" for Delete/archieve
-floating action button for search (main activity)
-
-reloading by swipe scrolling down at the top of the list.
-
-Navigation Drawer
-
-Thumb does most of the work 49\% single handed with thumb plus 26\% double
-handed still with thumb (chapter 1, 'How we hold our gadgets').
-
-Independent of left or right hand, center and down to the middle of the screen (chapter 1, 'The Phone's thumb zone')
-
-According to 'Desigining for Touch' (chapter 1, fig. 1.24), no navigation bar at the bottom, only
-a floating action button.
-
-Touch target 7mm minimum 'Designin for Touch' (chapter2, Good enough Size: 7mm).
-7-11mm depending on location. Thumb fan. 44 dp in Android corresponds to 7mm,
-69 pixels is 11mm.
-
-make the interface fast (chapter 3, 'Enable primary tasks directly form list view').
-
-Reducing the number of buttons to where direct interaction is not possible (chapter 4, 'Buttons are a Hack')
 
 \subsubsection{Mail Message Editor}
-Text Area
+The `Mail Message Editor' is implemented as a Fragment. The view has a usual
+toolbar that with a back navigation on the left edge. In the middle, the message
+mode (`Reply', `Reply-All', `Forward') is indicated. At the right edge a `Send
+Message' and a `vertical overflow menu' ImageButton is placed. The latter hosts
+manual `Message Attachment' functionality which is considered to be of lower importance
+in a mobile app. Therefore this functionality is only accessible through the
+`vertical overflow menu'. Usually a user will send an attachement out of the
+application that handles the type of attachemnt. Then the mail client can be
+started by an implicit intent, automatically attaching the object to be sent.
 
-
-
-\section{Design with Android Elements}
-How to splitup the functionality into activities, layouts, menues, dialogs, fragments and messages.
-Elaborate which functions that are most important and that should be included.
-Which functions can be left out to compensate for the mobile context
-Is there needed some additional functionality for the mobile context
-reflect on the different aspects regarding usability
-describe how the interaction shall happen.
-Motivate design descisions.
-
-\section{Some design examples from Android Studio UI Designer, some pen paper designs}
-
-\section{describe how all main functionality in the app}
-
+The rest of the UI is split  into three parts: the  header with send mail
+account, recipient and message topic, the message edit text area and a slide-in
+keyboard to write the actual message. The address field is automatically set
+in the case of `Reply' mode. Tapping in the address field will open a contacts
+organizer using an implicit intent.
 
 \section{Describe needed changes for another mobile platform}
 
