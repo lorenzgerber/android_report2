@@ -266,20 +266,25 @@ The primary direct interaction of this view is to scroll up and down in the
 on the list item.
 
 The toolbar uses the Material Design component `AppBarLayout'
-\cite{appbar_layout}.  It provides functionality for advanced scrolling
-techniuqes of the underlying content. One such used it the `Swipe to Refresh' at
-the top of the recycler list. When distinctly pull down the list for a moment,
-reloading the mailboxes for new messages will be activted.
+\cite{appbar_layout}. It hosts the menu icon on the left to swipe in the
+`Navigation Drawer', a title showing the current active mail account and an
+`ImageButton' icon to compose a new mail message.
 
-The implementation of this primary action (reload mailboxes) is a good example
+The `AppBarLayour' provides functionality for advanced scrolling
+techniuqes of the underlying content, for exampel `Swipe to Refresh' at
+the top of the recycler list \ref{fig:mail_message_list}.
+When pull down the list that is already in top end
+position, the active mail account will be queried for new messages. The
+implementation of this primary action (reload mailboxes) is a good example
 of an intuitive UI: The user expects the newest mails to be on top of the list.
 It is understood that the list can be scrolled. When the user wants to check if
 the current visible message is the newest, he will automatically pull the list
 down and by this activate a mailbox reload. An eventual freshly downloaded
-message popping up at the top will easily be recognized as `just arrived'.
+message popping up at the top will easily be recognized as new.
 
 Another direct interaction that implements primary funcitonality is the
-horizontal swiping of list elements. In `Apple Mail', swiping to the right will
+horizontal swiping of list elements \cite['Leave-behinds']{material_list_controls}.
+In `Apple Mail', swiping to the right will
 mark the message as `unread' while swiping to the left will delete it. This seems
 a rather dangerous combination for a mobile user interace. Therefore it was
 decided that left and right swipe will trigger the
@@ -301,12 +306,14 @@ in the scope of this report.
 
 Clark makes a point that the Android setup with three system buttons on the
 screen bottom is less than optimal: Folllowing design rules, it prevents from
-placing app specific functionality to there. And indeed Google material design
-only  has a few components that could violate this rule. As fix, several
-components are provided that help to circumvent this Android system design
-limitation. One of them is the Floating action button (FAB) which allows to
-place some primary functionality in a easily reachable area. Here the FAB was
-implemented for mail message searching.
+placing app specific functionality to there  (
+\cite[Chapter 1, 'Make Way for the Operating System']{clark2015}).
+And indeed Google material design only  has a
+few components that could violate this rule. As fix, several components are
+provided that help to circumvent this Android system design limitation. One of
+them is the Floating action button (FAB) which allows to place some primary
+functionality in a easily reachable area. Here the FAB was implemented for mail
+message searching.
 
 \subsubsection{Navigation Drawer}
 The navigation drawer is an element within the `Mail Message List' Activity. A
@@ -316,7 +323,7 @@ that will slide in the drawer from the left. The more direct way of
 sliding in the drawer is to swipe inwards from the left edge of the screen: This
 feels arguably like a intuitive physical interaction.
 
-\begin{figure}
+\begin{figure}[hp!]
   \label{fig:nav_drawer}
   \centering
     \includegraphics[width=0.5\textwidth]{nav_drawer}
@@ -332,16 +339,29 @@ all configured mail accounts is merged into the `Mail Message List' view. In the
 the navigation drawer, single accounts can be chosen by tapping on them. This
 short tap will close the navigation drawer and with a short delay visibly switch
 the content of the `Mail Message List' to make the user aware of the selection
-he made. A long 
+he made. A long press on the mail account will open a configuration dialog.
 
+Below the mail accounts, there is a further menu item to access general app
+settings.
 
 \subsubsection{Mail Message Viewer}
+The `Mail Message View' is opens by tapping on a individual `Mail Message' in
+the `Mail Message List' view. As outlined in figure
+\ref{fig:hand_design}(rightmost drawing), this view will be composed by an
+`ExpandableListView' to structure the history of an mail conversation. The most
+recent mail message will be in expanded form, showing the actual message. All
+prior messages in a ongoing conversation will be collapsed. The toolbar here
+contains a navigation icon on the left edge to go back to the `Mail Message
+List'. On the right side of the toolbar is one `ImageButton' for replying the
+message and one with the `vertical overflow menu' icon which will open a menu
+for secondary functionality.
+
+The reply button will by default start the `Mail Message Editor' Fragment in
+`reply-to-sender' mode. A long press on the reply button will open a menu that
+provides the `Reply-All' and `Forward' functionality.
+
 
 \subsubsection{Mail Message Editor}
-
-
-
-
 
 
 
