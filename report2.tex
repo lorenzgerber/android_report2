@@ -279,31 +279,34 @@ down and by this activate a mailbox reload. An eventual freshly downloaded
 message popping up at the top will easily be recognized as `just arrived'.
 
 Another direct interaction that implements primary funcitonality is the
-horizontal swiping of list elements that will lead to archiving the respective
-Mail Message. Here it was decided that left and right swipe will trigger the
+horizontal swiping of list elements. In `Apple Mail', swiping to the right will
+mark the message as `unread' while swiping to the left will delete it. This seems
+a rather dangerous combination for a mobile user interace. Therefore it was
+decided that left and right swipe will trigger the
 same function. According to Clark (\cite[chapter1, `Hold the
 phone']{clark2015}), most people hold the device initially in the right hand,
 but then switch frequently. According to Clark, in one hand operation, using the
 thumb is predominant. It was considered  that for one hand operation with the
 thumb, the natural understanding of interaction would be to swipe a list element
 away from the user. But as the user frequently changes the hand that holds the
-device, applying the same function for left and  right swipe seems most
+device, applying the same function for left and right swipe seems most
 consistent and safe.
 
 It was also decided to only trigger archieving of Mail Messages, no delete
 action  which is in contrast to several popular mail apps. Often the choice
 between archieve  or delete depends on the type of the underlying mail account:
 Not all mail accounts provide archieve functionality. The app under development
-will address this issue with a software based solution that is however not
-subject of this report.
+will address this issue with a software based solution. This is however not
+in the scope of this report.
 
 Clark makes a point that the Android setup with three system buttons on the
-bottom is less than optimal: Folllowing design rules, it prevents from placing
-app specific functionality to the button of the screen. Googles material design
-indeed has few components that violate this rule. Further, several components are
-provided that help to circumvent this limitation. One of them is the Floating action
-button (FAB) which allows to place some primary functionality in a easily reachable
-area. Here the FAB was implemented for mail message searching.
+screen bottom is less than optimal: Folllowing design rules, it prevents from
+placing app specific functionality to there. And indeed Google material design
+only  has a few components that could violate this rule. As fix, several
+components are provided that help to circumvent this Android system design
+limitation. One of them is the Floating action button (FAB) which allows to
+place some primary functionality in a easily reachable area. Here the FAB was
+implemented for mail message searching.
 
 \subsubsection{Navigation Drawer}
 The navigation drawer is an element within the `Mail Message List' Activity. A
@@ -313,7 +316,6 @@ that will slide in the drawer from the left. The more direct way of
 sliding in the drawer is to swipe inwards from the left edge of the screen: This
 feels arguably like a intuitive physical interaction.
 
-
 \begin{figure}
   \label{fig:nav_drawer}
   \centering
@@ -322,6 +324,17 @@ feels arguably like a intuitive physical interaction.
     `Mail List' and `Mail Details'. The `Mailbox List' column is however
     hidden in the standard configuration.}}
 \end{figure}
+
+The Navigation drawer offers secondary functionality which relates mostly to
+mailbox administration and organisation, correspondigly to the `Mailbox List'
+slider column in `Apple Mail'  By default, the inboxes of
+all configured mail accounts is merged into the `Mail Message List' view. In the
+the navigation drawer, single accounts can be chosen by tapping on them. This
+short tap will close the navigation drawer and with a short delay visibly switch
+the content of the `Mail Message List' to make the user aware of the selection
+he made. A long 
+
+
 \subsubsection{Mail Message Viewer}
 
 \subsubsection{Mail Message Editor}
