@@ -279,8 +279,9 @@ implementation of this primary action (reload mailboxes) is a good example
 of an intuitive UI: The user expects the newest mails to be on top of the list.
 It is understood that the list can be scrolled. When the user wants to check if
 the current visible message is the newest, he will automatically pull the list
-down and by this activate a mailbox reload. An eventual freshly downloaded
-message popping up at the top will easily be recognized as new.
+down and by this activate a mailbox reload. When a new messages is downloaded
+from the server, a `snackbar' message shows up to give a distinct signal to the
+user that new messages are available.
 
 Another direct interaction that implements primary funcitonality is the
 horizontal swiping of list elements \cite['Leave-behinds']{material_list_controls}.
@@ -295,7 +296,8 @@ thumb is predominant. It was considered  that for one hand operation with the
 thumb, the natural understanding of interaction would be to swipe a list element
 away from the user. But as the user frequently changes the hand that holds the
 device, applying the same function for left and right swipe seems most
-consistent and safe.
+consistent and safe. When a message is archieved in that way, a `snackbar'
+message appears at the bottom of the screen.
 
 It was also decided to only trigger archieving of Mail Messages, no delete
 action  which is in contrast to several popular mail apps. Often the choice
