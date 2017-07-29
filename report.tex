@@ -386,6 +386,21 @@ were consulted as guidelines: The general `Human Interface Guidelines' from
 Apple (\cite{apple_ios_design}) and a chapter about platform adaption in the
 Google Material Design Guidelines (\cite{adapt_ios}).
 
+One change in the general structure of the app is related to the different
+interpretation of gestures between Android and iOS: Left to right edge swipe
+on iOS is to go back one screen while in Android, when available, it will open
+the navigation drawer as described earlier. Hence, instead of a navigation drawer
+to choose the current mail account, a speparate screen has to be implemented
+on iOS \cite{adapt_ios}.
+
+Besides this, there are a number of obvious details such as switching the font
+from `Roboto' on Android to `San Francisco' on iOS. It as further assumed that
+for control elements such as switches and checkboxes the corresponding native
+versions on iOS are used.
+
+
+
+
 
 \addcontentsline{toc}{section}{\refname}
 \bibliography{references}
