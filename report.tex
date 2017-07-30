@@ -21,7 +21,7 @@
 % DOCUMENT INFO
 % =============
 \department{Department of Computing Science}
-\coursename{Development of Mobile Appliations 7.5 p}
+\coursename{Development of Mobile Applications 7.5 p}
 \coursecode{5DV155}
 \title{User Interface for Mobile Systems}
 \author{Lorenz Gerber ({\tt{dv15lgr@cs.umu.se}} {\tt{lozger03@student.umu.se}})}
@@ -69,12 +69,12 @@
 The aim of this assignment is to translate a desktop mail client application to
 a mobile app. This includes both functional and design related aspects. The
 functionality shall be described in terms of Android elements and concepts such
-as activities, layouts, menues, dialogs, fragments and messages. A main aspect is
+as activities, layouts, menus, dialogues, fragments and messages. A main aspect is
 to decide and reason which functionality should be stripped from the desktop version
 and eventual additional functionality needed in the mobile app.
 
 The design shall account for usability aspects following concepts from the
-course litterature \cite{clark2015} and platform guidelines \cite{materialdesign}.
+course literature \cite{clark2015} and platform guidelines \cite{materialdesign}.
 The report has to include several prototype designs of which at least one shall be
 made in `Android Studio' and one by hand or any design/drawing application of choice.
 
@@ -92,7 +92,7 @@ functionality in Apple Mail was conducted.
 The main UI of Apple Mail is shown in figure \ref{fig:apple_main_screen}.
 It consists of three columns of which only the `Mail List' and `Mail Details'
 column are shown by default. The `Mail List' presents all mails of the active mailbox.
-the list entry can be customised in the `Preferences', accessible through the `File'
+the list entry can be customized in the `Preferences', accessible through the `File'
 drop down menu. The `Mail List' has by default a sort/filter bar with a drop down
 menu for various list sort methods and an icon button to apply filters. The `Mail
 List' scrolls vertically when not all mails of the mailbox fit on the screen.
@@ -116,11 +116,11 @@ another.
 
 Above the `Favorites' bar there is the `Toolbar' that contains in the default
 setup nine buttons and a search field. The buttons are from left to right:
-`Get new messages', `Compose new mail', `Archieve selected', `Delete selected',
+`Get new messages', `Compose new mail', `Archive selected', `Delete selected',
 `Selected to junk', `Reply', `Reply All', `Forward' and `Flag selected'. The
 search field allows for text search in all or in a specific mailbox. Both
 the content and the layout of the `Toolbar' is freely customizable with a number
-of addtional functions/buttons not visible in the default setup.
+of additional functions/buttons not visible in the default setup.
 
 Both the `Mail Message' and the `Folder' object on the screen provide context
 sensitive menu on 'right-click'.
@@ -135,22 +135,22 @@ sensitive menu on 'right-click'.
 \end{figure}
 
 \subsection{Description of Menu accessible Functionality in Apple Mail}
-The `Menu Bar' contains the dropdown menus `File', `Edit', `View', `Mailbox',
+The `Menu Bar' contains the drop-down menus `File', `Edit', `View', `Mailbox',
 `Message', `Format', `Windows' and `Help'. Most of the menu items are functionality
 that is also directly accessible in the UI. The menu shows keyboard shortcuts for
 much of the functionality. Menu items not found in the UI are either for
 configuration and customizing the UI, or for setting up and configuring the user
-data such as mailboxes accounts and smart assitant functions.
+data such as mailboxes accounts and smart assistant functions.
 
 \subsection{Notifications}
 Being a an application developed by `Apple' itself, `Apple Mail' is fully integrated
 with the OSX notification center and offers as such a wide range of configuration to
-adapt notification behaviour to the users preferences \cite{apple_notifications}. The
+adapt notification behavior to the users preferences \cite{apple_notifications}. The
 main elements of the notification system is a small badge that shows up in the upper
 right screen corner and floats for several seconds over all other content on the
-screen until it dissapears again. Apple Mail uses this notification badge when a
+screen until it disappears again. Apple Mail uses this notification badge when a
 new a new mail message is received. All notification messages are collected and
-archieved in the notification center which slides in as a drawer on the right side
+archived in the notification center which slides in as a drawer on the right side
 of the screen when pressing the notifications icon in the main menu bar. Further,
 the number of unread mails is shown in the application icon on the macOS `Dock'.
 
@@ -164,7 +164,7 @@ user preferences.
 
 Here it is assumed that the application profile of mobile
 mail client users is by default more limited. A mobile application does not need
-to offer the same flexibilty for customization and the profile of available
+to offer the same flexibility for customization and the profile of available
 functions will be more narrow.
 
 The most important functionality for a mobile mail client user is to have easy
@@ -190,7 +190,7 @@ application.
 
 
 
-\section{Transforming the Desktop Applicatin to an Android App}
+\section{Transforming the Desktop Application to an Android App}
 \subsection{The Application Structure}
 While a desktop application has very little space constraints and can
 compartmentalize the main screen in different sub containers, the mobile app
@@ -224,12 +224,12 @@ the left side, (left-most outline in figure \ref{fig:hand_design}).
 For notifications, the usual Android infrastructure is used: On arrival of new
 messages, they peek for a short period into the active screen. This notification will
 support opening up the `Mail Detail' view.  Further, unread messages are
-indicated by an icon in the status bar. The notifciation is also added to the
+indicated by an icon in the status bar. The notification is also added to the
 Android `Notification Drawer' \cite{android_notifications}.
 
 \subsection{Application Design Elements and User Experience}
 While studying the Android Material Design guidelines, it was striking how well
-they are aligned with the topics in the course litterature \cite{clark2015}.
+they are aligned with the topics in the course literature \cite{clark2015}.
 Material Design Components offer many ways of direct interaction that allow
 building a fast and intuitive UI as described in Clark 2015 (\cite[chapter 3,
 'Enable primary tasks directly from list view']{clark2015}).
@@ -245,8 +245,8 @@ here: \url{https://github.com/lorenzgerber/designmailclient.git}.
 \subsubsection{Scrollable Mail Message List}
 A prototype created in Android Studio of the scrollable `Mail Message List' can be
 seen in figure \ref{fig:mail_message_list}. Technically, the implementation
-usese a `RecyclerView' within a `CoordinatorLayout'. The former allows for
-resuse and efficient caching of the the list items. The latter is used to allow
+uses a `RecyclerView' within a `CoordinatorLayout'. The former allows for
+reuse and efficient caching of the the list items. The latter is used to allow
 interactions between child elements. There will be a number of such interactions
 described further down.
 
@@ -264,7 +264,7 @@ described further down.
 
 The list item shall according to Material Design guidelines have no more
 than  three lines \cite{material_lists}. Here, the first line is used for the
-Mail Message senders name and the timestamp when the message was recevied. The
+Mail Message senders name and the timestamp when the message was received. The
 second line shows the subject and the bottom line the first text line of the
 message.
 
@@ -278,7 +278,7 @@ The toolbar uses the Material Design component `AppBarLayout'
 `ImageButton' icon to compose a new mail message.
 
 The `AppBarLayour' provides functionality for advanced scrolling techniques of
-the underlying content, for exampel `Swipe to Refresh' at the top of the
+the underlying content, for example `Swipe to Refresh' at the top of the
 recycler list \ref{fig:mail_message_list}. When pulling down the list that is
 already in top end position, the active mail account will be queried for new
 messages. The implementation of this primary action (reload mailboxes) is a good
@@ -289,11 +289,11 @@ the list down and by this activate a mailbox reload. When a new messages is
 downloaded from the server, a `snackbar' message shows up to give a distinct
 signal to the user that new messages are available.
 
-Another direct interaction that implements primary funcitonality is the
+Another direct interaction that implements primary functionality is the
 horizontal swiping of list elements
 \cite['Leave-behinds']{material_list_controls}. In `Apple Mail', swiping to the
 right will mark the message as `unread' while swiping to the left will delete
-it. This seems a rather dangerous combination for a mobile user interace.
+it. This seems a rather dangerous combination for a mobile user interface.
 Therefore it was decided that left and right swipe will trigger the same
 function. According to Clark (\cite[chapter1, `Hold the phone']{clark2015}),
 most people hold the device initially in the right hand, but then switch
@@ -302,18 +302,18 @@ predominant. It was considered  that for one hand operation with the thumb, the
 natural understanding of interaction would be to swipe a list element away from
 the user. But as the user frequently changes the hand that holds the device,
 applying the same function for left and right swipe seems most consistent and
-safe. When a message is archieved in that way, a `snackbar' message appears at
+safe. When a message is archived in that way, a `snackbar' message appears at
 the bottom of the screen.
 
-It was also decided to only trigger archieving of Mail Messages, no `delete'
+It was also decided to only trigger archiving of Mail Messages, no `delete'
 action  which is in contrast to several popular mail apps. Often the choice
-between archieve  or delete depends on the type of the underlying mail account:
-Not all mail accounts provide archieve functionality. The app under development
+between archive  or delete depends on the type of the underlying mail account:
+Not all mail accounts provide archive functionality. The app under development
 will address this issue with a software based solution. This is however not
 in the scope of this report.
 
 Clark makes a point that the Android setup with three system buttons on the
-screen bottom is less than optimal: Folllowing design rules, it prevents from
+screen bottom is less than optimal: Following design rules, it prevents from
 placing app specific functionality there  (
 \cite[Chapter 1, 'Make Way for the Operating System']{clark2015}).
 And indeed Google material design only  has a
@@ -321,13 +321,13 @@ few components that could violate this rule. As fix, several components are
 provided that help to circumvent this Android system design limitation. One of
 them is the Floating action button (FAB) which allows to place some primary
 functionality in a easily reachable area. Here the FAB was implemented for mail
-message searching. The textfield to enter search terms is implememted as
+message searching. The textfield to enter search terms is implemented as
 a separate toolbar that replaces the standard toolbar of the `Mail Message List'
 view.
 
 \subsubsection{Navigation Drawer}
 The navigation drawer is an element within the `Mail Message List' Activity. A
-Material Design Component is available to help implement typical behaviour of
+Material Design Component is available to help implement typical behavior of
 the Navigation drawer, which includes the menu item at the left edge of the appbar
 that will slide in the drawer from the left. The more direct way of
 sliding in the drawer is to swipe inwards from the left edge of the screen: This
@@ -345,7 +345,7 @@ feels arguably like a intuitive physical interaction.
 \end{figure}
 
 The Navigation drawer offers secondary functionality which relates mostly to
-mailbox administration and organisation, correspondigly to the `Mailbox List'
+mailbox administration and organization, correspondingly to the `Mailbox List'
 slider column in `Apple Mail'  By default, the inboxes of
 all configured mail accounts is merged into the `Mail Message List' view. In the
 the navigation drawer, single accounts can be chosen by tapping on them. This
@@ -380,8 +380,8 @@ mode (`Reply', `Reply-All', `Forward') is indicated. At the right edge a `Send
 Message' and a `vertical overflow menu' ImageButton is placed. The latter hosts
 manual `Message Attachment' functionality which is considered to be of lower importance
 in a mobile app. Therefore this functionality is only accessible through the
-`vertical overflow menu'. Usually a user will send an attachement out of the
-application that handles the type of attachemnt. Then the mail client can be
+`vertical overflow menu'. Usually a user will send an attachment out of the
+application that handles the type of attachment. Then the mail client can be
 started by an implicit intent, automatically attaching the object to be sent.
 
 The rest of the UI is split  into three parts: the  header with send mail
@@ -400,7 +400,7 @@ One change in the general structure of the app is related to the different
 interpretation of gestures between Android and iOS: Left to right edge swipe
 on iOS is to go back one screen while in Android, when available, it will open
 the navigation drawer as described earlier. Hence, instead of a navigation drawer
-to choose the current mail account, a speparate screen has to be implemented
+to choose the current mail account, a separate screen has to be implemented
 on iOS \cite{adapt_ios}.
 
 There are also a number of design details that come automatically when programming
@@ -408,7 +408,7 @@ the app in iOS such as switching the font from `Roboto' on Android to
 `San Francisco', using the native available control elements on iOS (switches,
 checkboxes, etc) and also the iconography.
 
-Additional functionality that could be implmemented to use the special hardware
+Additional functionality that could be implemented to use the special hardware
 setup of iOS devices is for example the 3D Touch \cite{apple_ios_3dtouch}. Apple
 calls one such function `Peek', where the `deep' press opens a preview of the
 underlying object. This could be used in the 'Mail Message List' to show the
